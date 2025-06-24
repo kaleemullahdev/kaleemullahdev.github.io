@@ -3,7 +3,7 @@ import { PHASE_DEVELOPMENT_SERVER } from 'next/constants'
 const nextConfig = (phase: string) => {
   const isDev = phase === PHASE_DEVELOPMENT_SERVER
   const nextConfig = {
-    // output: 'export',
+    output: 'export',
     assetPrefix: isDev ? undefined : '',
     images: {
       unoptimized: isDev ? true : false,
