@@ -3,9 +3,8 @@ export const PROJECTS_DATA = [
     id: 'alloys',
     name: 'Alloys',
     url: 'https://alloys.total-infotech.com/',
-    description: 'Enterprise-level e-commerce platform with advanced search capabilities and optimized performance',
+    description: '',
     coverImage: 'alloys.png',
-    category: 'E-Commerce',
     technologies: [
       'React',
       'Next.js',
@@ -21,9 +20,8 @@ export const PROJECTS_DATA = [
     id: 'portfolio',
     name: 'Kaleem Ullah',
     url: 'https://polite-genie-672ad3.netlify.app/',
-    description: 'Personal portfolio website showcasing my projects and skills with modern animations',
+    description: '',
     coverImage: 'portfolio.png',
-    category: 'Web Apps',
     technologies: [
       'React',
       'Next.js',
@@ -37,8 +35,7 @@ export const PROJECTS_DATA = [
     name: 'Yoga International',
     url: 'https://yogainternational.com/',
     coverImage: 'yoga.png',
-    description: 'Leading online yoga platform with video streaming, course management, and subscription features',
-    category: 'Web Apps',
+    description: '',
     technologies: [
       'React',
       'Gatsby.js',
@@ -59,9 +56,8 @@ export const PROJECTS_DATA = [
     id: 'boundless',
     name: 'Boundless Maldives',
     url: 'https://www.boundlessmaldives.com/',
-    description: 'Luxury travel website for Maldives resorts with immersive visuals and booking system',
+    description: '',
     coverImage: 'boundless.png',
-    category: 'Landing Pages',
     technologies: [
       'React',
       'Gatsby.js',
@@ -75,10 +71,9 @@ export const PROJECTS_DATA = [
   {
     id: 'dr-elard',
     name: 'Dr Elard',
-    description: 'Medical aesthetic clinic website with appointment booking and service showcase',
+    description: '',
     url: 'https://medecine-esthetique-app.netlify.app/',
     coverImage: 'dr-elard.png',
-    category: 'Landing Pages',
     technologies: [
       'React',
       'Next.js',
@@ -93,10 +88,9 @@ export const PROJECTS_DATA = [
   {
     id: 'yard-map',
     name: 'Yard Map Interactive Google Map',
-    description: 'Interactive map application for yard management with real-time tracking and analytics',
+    description: '',
     url: 'https://medecine-esthetique-app.netlify.app/',
     coverImage: 'yard-map.png',
-    category: 'Web Apps',
     technologies: [
       'React',
       'Google Map API',
@@ -109,10 +103,9 @@ export const PROJECTS_DATA = [
   {
     id: 'total-tools-search',
     name: 'Total Tools Search Widget',
-    description: 'Advanced search widget for e-commerce platform with faceted search and filters',
+    description: '',
     url: 'https://www.totaltools.com.au/catalogsearch/result/?q=Tools',
     coverImage: 'totaltools.png',
-    category: 'E-Commerce',
     technologies: ['React', 'Webpack', 'CSS', 'Unbxd Search Api'],
   },
 ]

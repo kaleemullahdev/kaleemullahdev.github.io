@@ -3,7 +3,6 @@ import { Rubik } from 'next/font/google'
 import './globals.css'
 import { Header } from '~/components/header'
 import { Footer } from '~/components/footer'
-import { Cursor } from '~/components/Cursor'
 
 const rubik = Rubik({
   variable: '--font-rubik',
@@ -15,8 +14,8 @@ const rubik = Rubik({
 })
 
 export const metadata: Metadata = {
-  title: 'Kaleem Ullah - Full Stack Developer',
-  description: 'Full Stack Developer specializing in creating exceptional digital experiences',
+  title: 'Kaleem Ullah',
+  description: 'A portfolio website to demo the skills and projects',
 }
 
 export default function RootLayout({
@@ -27,9 +26,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={rubik.className}>
-        <Cursor />
         <Header />
-        <main className="min-h-screen">{children}</main>
+        <main className="min-h-screen pt-10 pb-20 bg-white">{children}</main>
         <Footer />
       </body>
     </html>
