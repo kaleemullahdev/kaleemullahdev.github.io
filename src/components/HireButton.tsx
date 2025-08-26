@@ -4,67 +4,26 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Links } from './hero'
 import * as motion from 'motion/react-client'
-import { AnimatePresence } from 'motion/react'
 
 export const HireButton: React.FC<{ professionalLinks: Links[] }> = ({
   professionalLinks,
 }) => {
-  const [showIcons, setShowIcons] = useState(false)
-
-  const onHireClick = () => {
-    setShowIcons(!showIcons)
-  }
-
   return (
-    <div className="relative">
-      <div
-        className={`absolute top-1 w-1/2 xs:w-1/3 flex flex-row md:flex-row justify-evenly  items-center  bottom-full   transform -translate-x-1/5   space-x-2 transition-all`}
+    <motion.a
+      href="mailto:kaleemullah786.ku61@gmail.com"
+      className="inline-flex items-center px-8 py-4 text-white bg-gradient-to-r from-accent to-accent-light rounded-lg hover:shadow-xl transition-all duration-200 font-medium group"
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      <span>Get In Touch</span>
+      <svg 
+        className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" 
+        fill="none" 
+        stroke="currentColor" 
+        viewBox="0 0 24 24"
       >
-        <AnimatePresence>
-          {showIcons
-            ? professionalLinks?.map((link, index) => {
-                return (
-                  <motion.div
-                    className="bg-white  rounded-full shadow-lg shadow-gray-500 p-2 relative"
-                    initial={{ opacity: 0, y: 100 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.2 * index + 1 }}
-                    whileHover={{
-                      scale: 1.2,
-                      transition: { duration: 0, delay: 0.1 },
-                    }}
-                    exit={{ opacity: 0, y: 0, scale: 0 }}
-                    key={link.icon}
-                  >
-                    <Link
-                      href={link.src || '/'}
-                      target="_blank"
-                      className="max-auto"
-                    >
-                      <Image
-                        src={`/${link.icon}`}
-                        width={40}
-                        height={40}
-                        alt="github"
-                        className="text-white"
-                      />
-                    </Link>
-                  </motion.div>
-                )
-              })
-            : null}
-        </AnimatePresence>
-      </div>
-      <div className="pt-5">
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          className="bg-primary text-white px-20 py-3 mt-10 rounded-lg hover:bg-red-600 shadow-lg hover:shadow-xl transition duration-200 cursor-pointer font-medium text-lg"
-          onClick={onHireClick}
-        >
-          Contact Me
-        </motion.button>
-      </div>
-    </div>
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </motion.a>
   )
 }
