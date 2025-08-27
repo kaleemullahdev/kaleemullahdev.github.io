@@ -2,15 +2,13 @@
 
 import { motion } from 'motion/react'
 import { 
-  Code, 
-  Palette, 
-  Rocket, 
-  Globe, 
   Monitor, 
   Server,
-  Smartphone,
-  Database,
-  Shield
+  Globe,
+  Shield,
+  FileText,
+  GitBranch,
+  Rocket
 } from 'lucide-react'
 
 type Service = {
@@ -34,28 +32,28 @@ const services: Service[] = [
     features: ['Node.js/Python', 'RESTful APIs', 'GraphQL', 'Microservices']
   },
   {
-    title: 'Mobile Development',
-    icon: Smartphone,
-    description: 'Developing cross-platform mobile applications with native performance.',
-    features: ['React Native', 'Flutter', 'Progressive Web Apps', 'App Store Deployment']
+    title: 'CMS Development',
+    icon: FileText,
+    description: 'Implementing and customizing content management systems for easy content control.',
+    features: ['Sanity.io', 'Storyblok', 'Craft CMS', 'Headless CMS Integration']
   },
   {
-    title: 'Database Design',
-    icon: Database,
-    description: 'Designing and optimizing database schemas for maximum efficiency.',
-    features: ['PostgreSQL', 'MongoDB', 'Redis', 'Database Optimization']
+    title: 'Deployment & CI/CD',
+    icon: GitBranch,
+    description: 'Streamlined deployment workflows and continuous integration/deployment solutions.',
+    features: ['GitHub Actions', 'Vercel', 'Netlify', 'Domain Configuration']
   },
   {
-    title: 'Cloud & DevOps',
+    title: 'Cloud Hosting',
     icon: Globe,
-    description: 'Deploying and managing applications in cloud environments.',
-    features: ['AWS/Azure', 'Docker', 'CI/CD', 'Kubernetes']
+    description: 'Expert deployment and management of applications on modern cloud platforms.',
+    features: ['Vercel Deployment', 'Netlify Hosting', 'Custom Domains', 'SSL Configuration']
   },
   {
-    title: 'Security & Testing',
+    title: 'Quality Assurance',
     icon: Shield,
-    description: 'Ensuring application security and quality through comprehensive testing.',
-    features: ['Security Audits', 'Unit Testing', 'E2E Testing', 'Performance Testing']
+    description: 'Comprehensive testing and security measures to ensure reliable applications.',
+    features: ['Unit Testing', 'E2E Testing', 'Performance Testing', 'Code Reviews']
   }
 ]
 

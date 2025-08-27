@@ -238,18 +238,12 @@ export const Projects = () => {
               href="https://github.com/kaleemullahdev"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white rounded-2xl font-bold text-lg overflow-hidden"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="group inline-flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 text-gray-700 rounded-xl font-semibold text-sm hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 shadow-sm"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
-              <span className="relative z-10">Explore All Projects</span>
-              <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-2 transition-transform" />
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-primary"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: 0 }}
-                transition={{ duration: 0.3 }}
-              />
+              <span>View More Projects</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
             </motion.a>
           </motion.div>
         )}
