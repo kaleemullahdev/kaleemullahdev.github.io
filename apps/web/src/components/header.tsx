@@ -1,75 +1,76 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { AnimatePresence, motion, Variants } from 'motion/react'
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { AnimatePresence, motion, type Variants } from 'motion/react';
 
 const menuItems = [
   { title: 'Home', href: '/', isSection: false },
   { title: 'Services', href: '/#services', isSection: true },
   { title: 'Projects', href: '/#projects', isSection: true },
-  { title: 'About', href: '/#about', isSection: true },
-  { title: 'Contact', href: '/#contact', isSection: true },
-]
+  { title: 'Contact', href: '/contact', isSection: false },
+];
 
 export const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('')
-  const pathname = usePathname()
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
-  const closeMenu = () => setIsMenuOpen(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
+  const pathname = usePathname();
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
 
   const handleNavClick = (href: string, isSection: boolean) => {
     if (href === '/') {
-      setActiveSection('')
+      setActiveSection('');
     } else if (isSection && href.startsWith('/#')) {
-      const sectionId = href.substring(2)
-      setActiveSection(sectionId)
+      const sectionId = href.substring(2);
+      setActiveSection(sectionId);
     }
-  }
+  };
 
   useEffect(() => {
     const scrollToSection = () => {
       if (typeof window !== 'undefined' && window.location.hash) {
-        const sectionId = window.location.hash.substring(1)
-        setActiveSection(sectionId)
+        const sectionId = window.location.hash.substring(1);
+        setActiveSection(sectionId);
         setTimeout(() => {
-          const element = document.getElementById(sectionId)
+          const element = document.getElementById(sectionId);
           if (element) {
-            element.scrollIntoView({ behavior: 'smooth' })
+            element.scrollIntoView({ behavior: 'smooth' });
           }
-        }, 100)
+        }, 100);
       }
-    }
+    };
 
-    scrollToSection()
-  }, [pathname])
+    scrollToSection();
+  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (pathname !== '/') return
+      if (pathname !== '/') return;
 
-      const sections = menuItems.filter(item => item.isSection).map(item => item.href.substring(2))
+      const sections = menuItems
+        .filter((item) => item.isSection)
+        .map((item) => item.href.substring(2));
 
       for (const sectionId of sections.reverse()) {
-        const element = document.getElementById(sectionId)
+        const element = document.getElementById(sectionId);
         if (element) {
-          const rect = element.getBoundingClientRect()
+          const rect = element.getBoundingClientRect();
           if (rect.top <= 100) {
-            setActiveSection(sectionId)
-            return
+            setActiveSection(sectionId);
+            return;
           }
         }
       }
-      setActiveSection('')
-    }
+      setActiveSection('');
+    };
 
-    window.addEventListener('scroll', handleScroll)
-    handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [pathname])
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [pathname]);
 
   const sidebarVariants: Variants = {
     open: {
@@ -93,7 +94,7 @@ export const Header = () => {
         staggerDirection: -1,
       },
     },
-  }
+  };
 
   const menuItemVariants: Variants = {
     open: {
@@ -114,7 +115,7 @@ export const Header = () => {
         damping: 22,
       },
     },
-  }
+  };
 
   const buttonVariants: Variants = {
     open: {
@@ -131,53 +132,56 @@ export const Header = () => {
       scale: 0.9,
       transition: { type: 'spring', stiffness: 500, damping: 10 },
     },
-  }
+  };
 
   return (
     <header className="fixed top-2 left-0 right-0 z-50">
       <div className="container mx-auto px-4">
         <div className="hidden lg:flex items-center justify-center">
           <nav className="flex items-center h-full w-full justify-center">
-            <div className="relative bg-primary/50 backdrop-blur-sm rounded-full h-full shadow-2xl shadow-black/20 px-1 border border-white/20">
-              <ul className="relative flex items-center h-full lg:px-2 xl:px-3 lg:py-1.5 xl:py-2 text-black lg:gap-0.5 xl:gap-0">
+            <div className="relative bg-black/30 backdrop-blur-md rounded-full h-full shadow-2xl shadow-black/40 px-1 border border-white/20">
+              <ul className="relative flex items-center h-full lg:px-2 xl:px-3 lg:py-1.5 xl:py-2 text-white lg:gap-0.5 xl:gap-0">
                 <li className="mr-1">
                   <Link
                     href="/"
                     className="flex items-center lg:px-2 xl:px-3 py-1 hover:bg-white/30 rounded-full transition-all duration-200 group"
                   >
                     <div className="lg:w-8 xl:w-10 lg:h-8 xl:h-10 relative">
-                      <div className="w-full h-full rounded-full overflow-hidden" style={{
-                        background: "linear-gradient(145deg, #0a0a0a, #1a1a1a)",
-                        boxShadow: "inset 2px 2px 5px #000000, inset -2px -2px 5px #2a2a2a"
-                      }}>
+                      <div
+                        className="w-full h-full rounded-full overflow-hidden"
+                        style={{
+                          background: 'linear-gradient(145deg, #0a0a0a, #1a1a1a)',
+                          boxShadow: 'inset 2px 2px 5px #000000, inset -2px -2px 5px #2a2a2a',
+                        }}
+                      >
                         <Image
                           src="/image.jpg"
                           alt="Kaleem Ullah"
                           width={40}
                           height={40}
                           className="w-full h-full object-cover opacity-90"
-                          style={{ filter: "contrast(1.1) brightness(0.9)" }}
+                          style={{ filter: 'contrast(1.1) brightness(0.9)' }}
                         />
                       </div>
                       <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
                     </div>
-                    <span className="lg:ml-2 xl:ml-2.5 font-semibold text-black lg:text-xs xl:text-sm lg:tracking-tight xl:tracking-wide">
+                    <span className="lg:ml-2 xl:ml-2.5 font-semibold text-white lg:text-xs xl:text-sm lg:tracking-tight xl:tracking-wide">
                       Kaleem Ullah
                     </span>
                   </Link>
                 </li>
 
-                <li className="lg:h-5 xl:h-6 w-px bg-gradient-to-b from-transparent via-black/30 to-transparent lg:mx-2 xl:mx-3"></li>
+                <li className="lg:h-5 xl:h-6 w-px bg-gradient-to-b from-transparent via-white/30 to-transparent lg:mx-2 xl:mx-3"></li>
 
                 {menuItems.map(({ title, href, isSection }, index) => {
-                  let isActive = false
+                  let isActive = false;
 
                   if (href === '/') {
-                    isActive = pathname === '/' && !activeSection
+                    isActive = pathname === '/' && !activeSection;
                   } else if (isSection) {
-                    isActive = pathname === '/' && `/#${activeSection}` === href
+                    isActive = pathname === '/' && `/#${activeSection}` === href;
                   } else {
-                    isActive = pathname === href
+                    isActive = pathname === href;
                   }
 
                   return (
@@ -195,7 +199,7 @@ export const Header = () => {
                           className={`relative flex items-center lg:py-1.5 xl:py-2 lg:px-3 xl:px-4 rounded-full font-medium lg:text-xs xl:text-[13px] transition-all duration-300 ${
                             isActive
                               ? 'bg-white text-black shadow-lg shadow-black/20 border border-white/50'
-                              : 'text-black/90 hover:text-black hover:bg-white/50'
+                              : 'text-white/90 hover:text-white hover:bg-white/20'
                           }`}
                         >
                           {isActive && (
@@ -205,7 +209,7 @@ export const Header = () => {
                         </span>
                       </Link>
                     </li>
-                  )
+                  );
                 })}
 
                 <li className="lg:pl-1 xl:pl-2">
@@ -225,22 +229,25 @@ export const Header = () => {
           </nav>
         </div>
       </div>
-      
+
       <div className="fixed top-0 left-0 right-0 z-50 lg:hidden">
         <div className="flex items-center justify-between px-4 py-4">
           <Link href="/" className="flex-shrink-0">
             <div className="relative w-10 h-10">
-              <div className="w-full h-full rounded-full overflow-hidden" style={{
-                background: "linear-gradient(145deg, #0a0a0a, #1a1a1a)",
-                boxShadow: "inset 2px 2px 5px #000000, inset -2px -2px 5px #2a2a2a"
-              }}>
+              <div
+                className="w-full h-full rounded-full overflow-hidden"
+                style={{
+                  background: 'linear-gradient(145deg, #0a0a0a, #1a1a1a)',
+                  boxShadow: 'inset 2px 2px 5px #000000, inset -2px -2px 5px #2a2a2a',
+                }}
+              >
                 <Image
                   src="/image.jpg"
                   alt="Kaleem Ullah"
                   width={40}
                   height={40}
                   className="w-full h-full object-cover opacity-90"
-                  style={{ filter: "contrast(1.1) brightness(0.9)" }}
+                  style={{ filter: 'contrast(1.1) brightness(0.9)' }}
                 />
               </div>
               <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-white"></div>
@@ -249,7 +256,7 @@ export const Header = () => {
 
           <motion.button
             onClick={toggleMenu}
-            className="flex-shrink-0 bg-primary p-2 text-secondary rounded-md hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-secondary"
+            className="flex-shrink-0 bg-primary p-2 text-secondary rounded-md hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-secondary cursor-pointer"
             aria-label={isMenuOpen ? 'Close main menu' : 'Open main menu'}
             aria-expanded={isMenuOpen}
             initial="closed"
@@ -335,5 +342,5 @@ export const Header = () => {
         </div>
       </motion.div>
     </header>
-  )
-}
+  );
+};

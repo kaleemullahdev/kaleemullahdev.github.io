@@ -1,6 +1,5 @@
-import {project} from './project'
-import {service} from './service'
-import {experience} from './experience'
-import {skill} from './skill'
+import { project } from './project';
+import { service } from './service';
+import { blockContent } from './blockContent';
 
-export const schemaTypes = [project, service, experience, skill]
+export const schemaTypes = [project, service, blockContent];

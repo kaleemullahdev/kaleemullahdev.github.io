@@ -4,17 +4,37 @@
   "private": true,
   "scripts": {
     "dev": "turbo run dev",
+    "dev:web": "turbo run dev --filter=web",
+    "dev:studio": "turbo run dev --filter=studio",
     "build": "turbo run build",
+    "build:web": "turbo run build --filter=web",
+    "build:studio": "turbo run build --filter=studio",
     "start": "turbo run start",
+    "start:web": "turbo run start --filter=web",
+    "start:studio": "turbo run start --filter=studio",
     "lint": "turbo run lint",
-    "type-check": "turbo run type-check",
+    "lint:fix": "pnpm run format && turbo run lint -- --fix",
+    "typecheck": "turbo run typecheck",
+    "format": "prettier --write . --ignore-path .gitignore",
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
     "clean": "turbo run clean",
-    "studio:dev": "turbo run dev --filter=studio",
-    "web:dev": "turbo run dev --filter=web"
+    "deploy:studio": "cd apps/studio && pnpm sanity deploy",
+    "schema:extract": "turbo run schema:extract --filter=studio",
+    "typegen": "cd apps/studio && pnpm typegen && mv sanity.types.ts ../../packages/sanity-shared/src/types.ts",
+    "typegen:turbo": "turbo run typegen",
+    "extract": "node scripts/extract-and-migrate.js",
+    "migrate": "node scripts/migrate-enhanced.js",
+    "migrate:detailed": "node scripts/migrate-enhanced.js",
+    "migrate:basic": "node scripts/migrate-to-sanity.js",
+    "prepare": "husky"
   },
   "devDependencies": {
-    "turbo": "latest",
-    "prettier": "^3.5.3"
+    "husky": "^9.1.7",
+    "prettier": "^3.5.3",
+    "turbo": "^2.5.6"
   },
-  "packageManager": "pnpm@9.15.2"
+  "packageManager": "pnpm@9.15.2",
+  "dependencies": {
+    "@sanity/client": "^7.10.0"
+  }
 }

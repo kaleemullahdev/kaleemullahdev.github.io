@@ -1,119 +1,200 @@
-import {defineField, defineType} from 'sanity'
+import { DocumentIcon } from '@sanity/icons';
+import { defineField, defineType } from 'sanity';
 
 export const project = defineType({
   name: 'project',
-  title: 'Projects',
+  title: 'Project',
   type: 'document',
+  icon: DocumentIcon,
   fields: [
     defineField({
+      name: 'priority',
+      title: 'Priority',
+      type: 'number',
+      description: 'Lower numbers appear first (e.g., 1 = highest priority)',
+      validation: (rule) => rule.required().min(1),
+      initialValue: 10,
+    }),
+    defineField({
       name: 'name',
-      title: 'Project Name',
+      title: 'Name',
       type: 'string',
-      validation: Rule => Rule.required()
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'slug',
-      title: 'Slug',
       type: 'slug',
+      validation: (rule) => rule.required(),
       options: {
         source: 'name',
-        maxLength: 96,
       },
-      validation: Rule => Rule.required()
     }),
     defineField({
       name: 'description',
-      title: 'Description',
       type: 'text',
-      rows: 3,
     }),
     defineField({
       name: 'category',
       title: 'Category',
       type: 'string',
-      options: {
-        list: [
-          {title: 'E-commerce', value: 'ecommerce'},
-          {title: 'Portfolio', value: 'portfolio'},
-          {title: 'Web Application', value: 'webapp'},
-          {title: 'Mobile App', value: 'mobile'},
-          {title: 'Education Platform', value: 'education'},
-          {title: 'Healthcare', value: 'healthcare'},
-        ],
-      },
+      validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'coverImage',
-      title: 'Cover Image',
+      name: 'technologies',
+      title: 'Technologies',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'Technologies and frameworks used in this project',
+      validation: (rule) => rule.required().min(1),
+    }),
+    defineField({
+      name: 'logo',
+      title: 'Logo',
       type: 'image',
       options: {
         hotspot: true,
       },
+      validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'images',
-      title: 'Gallery Images',
-      type: 'array',
-      of: [{type: 'image', options: {hotspot: true}}],
-    }),
-    defineField({
-      name: 'technologies',
-      title: 'Technologies Used',
-      type: 'array',
-      of: [{type: 'string'}],
-      options: {
-        layout: 'tags',
-      },
-    }),
-    defineField({
-      name: 'demo',
-      title: 'Demo URL',
+      name: 'url',
+      title: 'URL (optional)',
       type: 'url',
     }),
     defineField({
-      name: 'github',
-      title: 'GitHub URL',
-      type: 'url',
+      name: 'projectDimensions',
+      title: 'Project Dimensions',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'timeline',
+          title: 'Timeline',
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'value',
+              title: 'Value',
+              type: 'number',
+            }),
+            defineField({
+              name: 'unit',
+              title: 'Unit',
+              type: 'string',
+              options: {
+                list: [
+                  { title: 'Week(s)', value: 'Week(s)' },
+                  { title: 'Month(s)', value: 'Month(s)' },
+                  { title: 'Year(s)', value: 'Year(s)' },
+                ],
+                layout: 'radio',
+              },
+            }),
+          ],
+        }),
+        defineField({
+          name: 'teamSize',
+          title: 'Team Size',
+          type: 'number',
+        }),
+        defineField({
+          name: 'iterations',
+          title: 'Iterations',
+          type: 'number',
+        }),
+        defineField({
+          name: 'technologies',
+          title: 'Technologies',
+          type: 'number',
+        }),
+      ],
     }),
     defineField({
-      name: 'duration',
-      title: 'Project Duration',
-      type: 'string',
-    }),
-    defineField({
-      name: 'team',
-      title: 'Team Size',
-      type: 'string',
-    }),
-    defineField({
-      name: 'role',
-      title: 'My Role',
-      type: 'string',
-    }),
-    defineField({
-      name: 'features',
-      title: 'Key Features',
+      name: 'coverImages',
+      title: 'Cover Images',
       type: 'array',
-      of: [{type: 'string'}],
+      of: [
+        {
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alt Text',
+              validation: (rule) => rule.required(),
+            },
+          ],
+        },
+      ],
     }),
     defineField({
-      name: 'featured',
-      title: 'Featured Project',
-      type: 'boolean',
-      initialValue: false,
-    }),
-    defineField({
-      name: 'order',
-      title: 'Display Order',
-      type: 'number',
-      initialValue: 0,
+      name: 'projectSections',
+      title: 'Project Sections',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'id',
+              type: 'string',
+              title: 'ID',
+              validation: (rule) => rule.required(),
+            },
+            {
+              name: 'name',
+              type: 'string',
+              title: 'Name',
+              validation: (rule) => rule.required(),
+            },
+            {
+              name: 'description',
+              type: 'blockContent',
+              title: 'Description',
+              validation: (rule) => rule.required(),
+            },
+            {
+              name: 'images',
+              type: 'array',
+              title: 'Images',
+              of: [
+                {
+                  type: 'image',
+                  options: {
+                    hotspot: true,
+                  },
+                  fields: [
+                    {
+                      name: 'alt',
+                      type: 'string',
+                      title: 'Alt Text',
+                      validation: (rule) => rule.required(),
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
     }),
   ],
   preview: {
     select: {
       title: 'name',
       subtitle: 'category',
-      media: 'coverImage',
+      priority: 'priority',
+      media: 'logo',
+    },
+    prepare(selection) {
+      const { title, subtitle, priority, media } = selection;
+      return {
+        title: `${priority ? `[${priority}] ` : ''}${title}`,
+        subtitle,
+        media,
+      };
     },
   },
-})
+});

@@ -1,9 +1,9 @@
-import { PHASE_DEVELOPMENT_SERVER } from 'next/constants'
-import type { NextConfig } from 'next'
+import { PHASE_DEVELOPMENT_SERVER } from 'next/constants';
+import type { NextConfig } from 'next';
 
 const nextConfig = (phase: string): NextConfig => {
-  const isDev = phase === PHASE_DEVELOPMENT_SERVER
-  
+  const isDev = phase === PHASE_DEVELOPMENT_SERVER;
+
   return {
     output: 'export',
     assetPrefix: isDev ? undefined : '',
@@ -19,14 +19,14 @@ const nextConfig = (phase: string): NextConfig => {
     compress: true,
     poweredByHeader: false,
     reactStrictMode: true,
-   
+
     compiler: {
       removeConsole: !isDev,
     },
     // experimental: {
     //   optimizeCss: true,
     // },
-  }
-}
+  };
+};
 
-export default nextConfig
+export default nextConfig;

@@ -1,9 +1,13 @@
-import {defineCliConfig} from 'sanity/cli'
+import { defineCliConfig } from 'sanity/cli';
+import { projectId, dataset } from 'sanity-shared/config';
 
 export default defineCliConfig({
   api: {
-    projectId: 'r09ozqjm',
-    dataset: 'production'
+    projectId,
+    dataset,
   },
   autoUpdates: true,
-})
+  /**
+   * TypeGen configuration
+   */
+});
